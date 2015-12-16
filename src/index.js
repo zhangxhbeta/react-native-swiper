@@ -56,7 +56,7 @@ let styles = StyleSheet.create({
     position: 'absolute',
     right: 15,
     top: 0,
-    bottom: 0,
+    bottom: 7,
     flexDirection: 'column',
     flex: 1,
     justifyContent: 'center',
@@ -69,7 +69,7 @@ let styles = StyleSheet.create({
     justifyContent: 'center',
     position: 'absolute',
     paddingLeft: 10,
-    bottom: -30,
+    bottom: 0,
     left: 0,
     flexWrap: 'nowrap',
     width: 250,
@@ -93,6 +93,15 @@ let styles = StyleSheet.create({
     fontSize: 50,
     color: '#007aff',
     fontFamily: 'Arial',
+  },
+
+  bottomBgBar: {
+    height: 30,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'rgba(52,52,52,0.5)',
   },
 })
 
@@ -121,6 +130,7 @@ export default React.createClass({
     autoplayDirection                : React.PropTypes.bool,
     index                            : React.PropTypes.number,
     renderPagination                 : React.PropTypes.func,
+    showBottomBar                    : React.PropTypes.bool,
   },
 
   mixins: [TimerMixin],
@@ -147,6 +157,7 @@ export default React.createClass({
       autoplayTimeout                  : 2.5,
       autoplayDirection                : true,
       index                            : 0,
+      showBottomBar                    : false,
     }
   },
 
@@ -493,6 +504,7 @@ export default React.createClass({
           onMomentumScrollEnd={this.onScrollEnd}>
           {pages}
         </ScrollView>
+        {this.props.showBottomBar ? <View style={styles.bottomBgBar} /> : null}
         {props.showsPagination && (props.renderPagination
           ? this.props.renderPagination(state.index, state.total, this)
           : this.renderPagination())}

@@ -65,7 +65,7 @@ var styles = _reactNative.StyleSheet.create({
     position: 'absolute',
     right: 15,
     top: 0,
-    bottom: 0,
+    bottom: 7,
     flexDirection: 'column',
     flex: 1,
     justifyContent: 'center',
@@ -78,7 +78,7 @@ var styles = _reactNative.StyleSheet.create({
     justifyContent: 'center',
     position: 'absolute',
     paddingLeft: 10,
-    bottom: -30,
+    bottom: 0,
     left: 0,
     flexWrap: 'nowrap',
     width: 250,
@@ -102,6 +102,15 @@ var styles = _reactNative.StyleSheet.create({
     fontSize: 50,
     color: '#007aff',
     fontFamily: 'Arial'
+  },
+
+  bottomBgBar: {
+    height: 30,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'rgba(52,52,52,0.5)'
   }
 });
 
@@ -130,7 +139,8 @@ exports['default'] = _reactNative2['default'].createClass({
     autoplayTimeout: _reactNative2['default'].PropTypes.number,
     autoplayDirection: _reactNative2['default'].PropTypes.bool,
     index: _reactNative2['default'].PropTypes.number,
-    renderPagination: _reactNative2['default'].PropTypes.func
+    renderPagination: _reactNative2['default'].PropTypes.func,
+    showBottomBar: _reactNative2['default'].PropTypes.bool
   },
 
   mixins: [_reactTimerMixin2['default']],
@@ -156,7 +166,8 @@ exports['default'] = _reactNative2['default'].createClass({
       autoplay: false,
       autoplayTimeout: 2.5,
       autoplayDirection: true,
-      index: 0
+      index: 0,
+      showBottomBar: false
     };
   },
 
@@ -524,6 +535,7 @@ exports['default'] = _reactNative2['default'].createClass({
           onMomentumScrollEnd: this.onScrollEnd }),
         pages
       ),
+      this.props.showBottomBar ? _reactNative2['default'].createElement(_reactNative.View, { style: styles.bottomBgBar }) : null,
       props.showsPagination && (props.renderPagination ? this.props.renderPagination(state.index, state.total, this) : this.renderPagination()),
       this.renderTitle(),
       this.props.showsButtons && this.renderButtons()
