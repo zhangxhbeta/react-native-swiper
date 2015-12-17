@@ -349,7 +349,7 @@ exports['default'] = _reactNative2['default'].createClass({
 
     var dots = [];
     for (var i = 0; i < this.state.total; i++) {
-      dots.push(i === this.state.index ? this.props.activeDot || _reactNative2['default'].createElement(_reactNative.View, { style: {
+      dots.push(i === this.state.index ? this.props.activeDot || _reactNative2['default'].createElement(_reactNative.View, { key: i, style: {
           backgroundColor: '#007aff',
           width: 8,
           height: 8,
@@ -358,7 +358,7 @@ exports['default'] = _reactNative2['default'].createClass({
           marginRight: 3,
           marginTop: 3,
           marginBottom: 3
-        } }) : this.props.dot || _reactNative2['default'].createElement(_reactNative.View, { style: {
+        } }) : this.props.dot || _reactNative2['default'].createElement(_reactNative.View, { key: i, style: {
           backgroundColor: 'rgba(0,0,0,.2)',
           width: 8,
           height: 8,
